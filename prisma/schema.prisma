@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb+srv://admin:COqsrBo2cXJoH2Cl@cluster0.drqhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+model Client {
+  id       String @id  @map("_id") @db.ObjectId
+  username String @unique
+  password String
+
+  @@map("client")
+}
+
+model Carrying {
+   id       String @id  @map("_id") @db.ObjectId
+  typeOfPerson      String      
+  cnpj              String @unique
+  stateRegistration String
+  socialReason      String
+  fantasyName       String
+  cep               String
+  street            String
+  number            String
+  neighborhood      String
+  city              String
+  state             String
+   email            String @unique
+   phone            String @unique
+   Observation      String
+
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
+
+
+  @@map("carryings")
+}
